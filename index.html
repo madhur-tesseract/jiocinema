@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Redirect Example</title>
+    <title>Jio Cinema Join Watch Party</title>
     <script>
-        // Function to automatically redirect to the custom URL
-        function redirectToRoom() {
-            // Get the roomId from the query string
+        // Function to dynamically set the roomId in the link
+        function setRoomId() {
+            // Assuming you receive the query parameter via URL
             const params = new URLSearchParams(window.location.search);
             const roomId = params.get('roomId'); // Get roomId from query string
 
-            // Redirect if roomId exists
+            // Update the href attribute if roomId is present
             if (roomId) {
-                const roomUrl = `yourapp://room?roomId=${roomId}`;
-                window.location.href = roomUrl; // Redirect to the custom URL
-            } else {
-                console.error('roomId parameter is missing in the URL');
+                const link = document.getElementById('dynamic-link');
+                link.href = `yourapp://room?roomId=${roomId}`;
             }
         }
 
         // Run the function on page load
-        window.onload = redirectToRoom;
+        window.onload = setRoomId;
     </script>
 </head>
 <body>
-    <p>If redirection does not happen automatically, check if yourapp is installed or if the roomId query parameter is missing.</p>
+    <p>Click the link below to visit a Application:</p>
+    <a id="dynamic-link" href="yourapp://room?roomId=" target="_blank">Visit App</a>
 </body>
 </html>
